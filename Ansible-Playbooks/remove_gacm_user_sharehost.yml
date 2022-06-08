@@ -1,0 +1,11 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+    - name: remove gacm user in sharehost
+      shell: userdel -r gacm

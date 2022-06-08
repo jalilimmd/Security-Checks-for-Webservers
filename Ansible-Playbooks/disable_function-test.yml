@@ -1,0 +1,14 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+  tasks:
+  - name: Replace after the expression till the end of the file (requires Ansible >= 2.4)
+    ansible.builtin.replace:
+    path: /usr/local/php80/lib/php.ini
+    after: 'disable_functions =*'
+    regexp: '^(.+)$'
+    replace: 'shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source'

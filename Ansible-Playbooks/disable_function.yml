@@ -1,0 +1,37 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: true
+  become_user: root
+  become_method: sudo
+  #connection: local
+  tasks: 
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php70/lib/php.ini
+  - name: replace in disable_functions files  
+    shell_exec: sed  -i '/"disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php72/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php73/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php74/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php80/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php81/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php56/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php54/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/disable_functions =/c\disable_functions = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php55/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/suhosin.executor.func.blacklist =/c\suhosin.executor.func.blacklist = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php56/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/suhosin.executor.func.blacklist =/c\suhosin.executor.func.blacklist = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php54/lib/php.ini
+  - name: replace in disable_functions files
+    shell_exec: sed  -i '/suhosin.executor.func.blacklist =/c\suhosin.executor.func.blacklist = shell_exec,system,passthru,exec,popen,ini_restore,socket_create,socket_create_listen,socket_create_pair,socket_listen,socket_bind,symlink,link,pfsockopen,ini_alter,dl,putenv,pcntl_exec,pcntl_fork,proc_close,proc_open,proc_terminate,posix_kill,posix_mkfifo,posix_setpgid,posix_setsid,posix_setuid,posix_setgid,posix_uname,getfile,mkfifo,show_source' /usr/local/php55/lib/php.ini
+
+ 
+#    - name: Show result
+#      debug:
+#        msg: "disable_function for all PHP versions has been set."

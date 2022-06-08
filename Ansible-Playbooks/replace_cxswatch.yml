@@ -1,0 +1,17 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace cxswatch file
+    copy:
+      src: files/cxswatch.sh
+      dest: /etc/cxs/cxswatch.sh
+      owner: root
+      group: root
+      mode: '0700'
+

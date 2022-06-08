@@ -1,0 +1,25 @@
+---
+- hosts: sec_test
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: copy dns_txt file
+    copy:
+     src: /usr/local/directadmin/data/templates/dns_txt.conf
+     dest: /usr/local/directadmin/data/templates/custom
+     owner: diradmin
+     group: diradmin
+     mode: 0644
+  - name: add DMARK record to NEW hosts
+    lineinfile:
+     path: /usr/local/directadmin/data/templates/custom/dns_txt.conf
+     line: _dmarc="v=DMARC1; p=reject; sp=none; rua=mailto:spam-reports@|DOMAIN|"
+     state: present
+     backup: yes
+  - name: Show result
+    debug:
+      msg: "Configuration for adding DMARC record to new hosts has been DONE for this server"
+    when: result is changed

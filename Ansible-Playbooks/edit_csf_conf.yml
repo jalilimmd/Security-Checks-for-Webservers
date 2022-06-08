@@ -1,0 +1,38 @@
+---
+- hosts: DA
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace LF_IPSET line
+    lineinfile:
+        path: /etc/csf/csf.conf
+        regexp: "LF_IPSET ="
+        line: "LF_IPSET = \"1\""
+        state: present
+        #check_mode: yes
+        backup: yes
+  - name: replace X_ARF line
+    lineinfile:
+        path: /etc/csf/csf.conf
+        regexp: "X_ARF ="      
+        line: "X_ARF = \"1\""
+        state: present
+        #check_mode: yes
+  - name: replace RESTRICT_SYSLOG line
+    lineinfile:
+        path: /etc/csf/csf.conf
+        regexp: "RESTRICT_SYSLOG ="
+        line: "RESTRICT_SYSLOG = \"3\""
+        state: present
+        #check_mode: yes
+  - name: replace SYSLOG_CHECK line
+    lineinfile:
+        path: /etc/csf/csf.conf
+        regexp: "SYSLOG_CHECK"
+        line: "SYSLOG_CHECK = \"3600\""
+        state: present
+        #check_mode: yes

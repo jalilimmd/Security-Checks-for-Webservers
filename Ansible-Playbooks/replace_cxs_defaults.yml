@@ -1,0 +1,16 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace cxscgi file
+    copy:
+      src: files/cxs.defaults
+      dest: /etc/cxs/cxs.defaults
+      owner: root
+      group: root
+      mode: '0644'

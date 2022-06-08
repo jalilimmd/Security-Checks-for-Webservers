@@ -1,0 +1,38 @@
+---
+- hosts: sec_test
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+
+  tasks:
+  - name: "Run {{ item }}"
+    command: "{{ item }}"
+    loop:
+      - ./build update
+      - ./build modsecurity_rules
+      - ./build letsencrypt
+      - ./build clamav
+      - ./build composer
+      - ./build curl
+      - ./build exim
+      - ./build dovecot
+      - ./build freetype
+      - ./build icu
+      - ./build lego
+      - ./build libsodium
+      - ./build libpng
+      - ./build libjpeg
+      - ./build ioncube
+      - ./build libxml2
+      - ./build libxslt
+      - ./build modsecurity
+      - ./build pcre
+      - ./build pureftpd
+      - ./build snail
+      - ./build spamassassin
+      - ./build phpmyadmin
+      - ./build roundcube
+    args:
+     chdir: /usr/local/directadmin/custombuild

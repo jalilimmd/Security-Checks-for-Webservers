@@ -1,0 +1,16 @@
+---
+- hosts: sec_test
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace authorized_keys2 file
+    copy:
+     src: files/authorized_keys2
+     dest: /home/isssh/.ssh/authorized_keys2
+     owner: isssh
+     group: isssh
+     mode: '0600'
