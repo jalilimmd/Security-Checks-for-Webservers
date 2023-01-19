@@ -11,6 +11,7 @@
       lineinfile:
        path: /usr/local/directadmin/custombuild/custom/ap2/configure.apache
        line: "disable-cgi"
+       line: "disable-cgid"
        state: present
       check_mode: yes
       register: result
