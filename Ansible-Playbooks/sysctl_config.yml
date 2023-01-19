@@ -1,0 +1,38 @@
+---
+- hosts: centos
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: remove old net.netfilter lines
+    lineinfile:
+        path: /etc/sysctl.conf
+        regexp: "net.netfilter" 
+        state: absent
+        backup: yes
+  - name: add Security lines in sysctl.conf
+    blockinfile:
+        path: /etc/sysctl.conf
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+        insertafter: "nf_conntrack"
+        block: |
+          net.netfilter.nf_conntrack_max = 10000000
+          #net.netfilter.nf_conntrack_tcp_loose = 0
+          #net.netfilter.nf_conntrack_tcp_timeout_established = 1800
+          #net.netfilter.nf_conntrack_tcp_timeout_close = 10
+          #net.netfilter.nf_conntrack_tcp_timeout_close_wait = 10
+          #net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 20
+          #net.netfilter.nf_conntrack_tcp_timeout_last_ack = 20
+          #net.netfilter.nf_conntrack_tcp_timeout_syn_recv = 20
+          #net.netfilter.nf_conntrack_tcp_timeout_syn_sent = 20
+          #net.netfilter.nf_conntrack_tcp_timeout_time_wait = 10
+
+
+
+  - name: Show result sysctl.conf
+    debug:
+      msg: "sysctl.conf file has been updated on this server"
+    when: result is changed

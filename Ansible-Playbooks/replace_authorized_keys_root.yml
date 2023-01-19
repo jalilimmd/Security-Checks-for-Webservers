@@ -1,0 +1,21 @@
+---
+- hosts: centos
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace authorized_keys2 file
+    copy:
+     src: files/authorized_keys2
+     dest: /home/root/.ssh/authorized_keys2
+     owner: root
+     group: root
+     mode: '0600'
+
+  - name: Show result
+    debug:
+      msg: "authorized_keys file has been replaced"
+    when: result is changed

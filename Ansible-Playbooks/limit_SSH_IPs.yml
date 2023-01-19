@@ -1,0 +1,31 @@
+---
+- hosts: centos
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+    - name: remove any SSHD lines
+      lineinfile:
+        path: /etc/hosts.allow
+        regexp: "SSHD" 
+        state: absent
+        backup: yes
+    - name: add trusted IPs block
+      blockinfile:
+        path: /etc/hosts.allow
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+        block: |
+          SSHD : x.x.x.x : ALLOW
+          SSHD : x.x.x.x : ALLOW
+          SSHD : x.x.x.x : ALLOW
+          SSHD : x.x.x.x : ALLOW
+          SSHD : tunnel.xxxx.com : ALLOW
+
+   
+    - name: Show result
+      debug:
+        msg: "Trusted IPs has been added"
+      when: result is changed

@@ -1,0 +1,29 @@
+---
+- hosts: centos
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+    - name: add conf-perm block
+      blockinfile:
+        path: /conf-perm.sh
+        marker: "<!-- {mark} Ansible MANAGED BLOCK -->"
+        block: |
+          #!/bin/bash
+            find /home/*/public_html -type d -exec chmod 755 {} \;
+            find /home/*/public_html -type f -exec chmod 644 {} \;
+            find /home/*/public_html/configuration.php -print -exec chmod 400 {} \;
+            find /home/*/public_html/config.php -print -exec chmod 400 {} \;
+            find /home/*/public_html/wp-config.php -print -exec chmod 400 {} \;
+            find /home/*/public_html/*/configuration.php -print -exec chmod 400 {} \;
+            find /home/*/public_html/*/config.php -print -exec chmod 400 {} \;
+            find /home/*/public_html/*/wp-config.php -print -exec chmod 400 {} \;
+
+   
+    - name: Show result
+      debug:
+        msg: "configurations has been added to conf-perm file"
+      when: result is changed

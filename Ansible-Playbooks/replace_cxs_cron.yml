@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace cxs-cron file
+    copy:
+     src: files/cxs-cron
+     dest: /etc/cron.d/cxs-cron
+     owner: root
+     group: root
+     mode: '0644'
+
+  - name: Show result
+    debug:
+      msg: "cxs-cron has been replaced"
+    when: result is changed

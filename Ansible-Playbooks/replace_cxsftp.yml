@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace cxsftp file
+    copy:
+      src: files/cxsftp.sh
+      dest: /etc/cxs/cxsftp.sh
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Show result
+    debug:
+      msg: "cxsftp.sh file has been replaced"
+    when: result is changed

@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  gather_facts: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+  - name: replace cxscgi file
+    copy:
+      src: files/cxscgi.sh
+      dest: /etc/cxs/cxscgi.sh
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Show result
+    debug:
+      msg: "cxscgi.sh file has been replaced"
+    when: result is changed

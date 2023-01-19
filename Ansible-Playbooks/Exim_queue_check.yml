@@ -1,0 +1,27 @@
+---
+- hosts: webservers
+  gather_facts: True
+  become: yes
+  become_user: root
+  become_method: sudo
+  #connection: local
+
+  tasks:
+    - name: Number of emails in exim queue
+      command: exim -bpc
+      register: result
+    - set_fact:
+        count: "{{ result.stdout }}"
+    - debug: var="result.stdout"
+    - debug: var="ansible_hostname"
+    - name: Send email to Email manager for high freeze count
+      mail:
+        host: mail.xxxx.com
+        port: 25
+        username: cxs@xxxx.com
+        password: *******
+        from: cxs@xxxx.com
+        to: <cxs.alert@xxxx.com>
+        subject: Warning  >>  More than 1000 emails in  "{{ ansible_hostname }}"  queue
+        body: There are  {{ result.stdout }}  emails in queue of  "{{ ansible_hostname }}"
+      when: "'count >= 1000'"
