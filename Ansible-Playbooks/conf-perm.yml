@@ -10,7 +10,7 @@
     - name: add conf-perm block
       blockinfile:
         path: /conf-perm.sh
-        marker: "<!-- {mark} Ansible MANAGED BLOCK -->"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         block: |
           #!/bin/bash
             find /home/*/public_html -type d -exec chmod 755 {} \;
